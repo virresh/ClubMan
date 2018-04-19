@@ -68,6 +68,7 @@
 			String sql = "SELECT Username, Name, Email, Priviledge FROM Members WHERE Username='" + un + "';";
 			ResultSet levents2 = stmt.executeQuery(sql);
 			String sql2 = "SELECT EventID, EventName from Events,Attended WHERE EventID=eid AND uname='" + un + "'";
+			
 			System.out.println(sql);
 			System.out.println(sql2);
 			stmt = conn.createStatement();
@@ -90,7 +91,7 @@
 		</h3>
 		<p>
 			Contact:
-			<%=Email%></p>
+			<%=Email%>, Handle: <%=un %></p>
 		<table class="table">
 			<tr>
 				<td>Event Attended</td>

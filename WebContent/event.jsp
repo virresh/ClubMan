@@ -59,6 +59,33 @@
 			</table>
 		</div>
 	</div>
+	<div class="container">
+		<h1>Attendance Record</h1>
+		<div class="container">
+			<%
+				String sql3 = "SELECT COUNT(*), uname FROM Attended GROUP BY uname ORDER BY COUNT(*) DESC;";
+				System.out.println(sql3);
+				stmt = conn.createStatement();
+				ResultSet lppd = stmt.executeQuery(sql3);
+			%>
+			<table class="table">
+				<tr>
+					<td>Handle</td>
+					<td>Events Attended</td>
+				</tr>
+				<%
+					while (lppd.next()) {
+				%>
+				<tr>
+					<td><a href="member.jsp?uname=<%=lppd.getString(2)%>"><%=lppd.getString(2)%></a></td>
+					<td><%=lppd.getString(1)%></td>
+				</tr>
+				<%
+					}
+				%>
+			</table>
+		</div>
+	</div>
 	<%
 		} else {
 			String eid = request.getParameter("eid");
@@ -70,6 +97,7 @@
 			System.out.println(sql2);
 			stmt = conn.createStatement();
 			ResultSet lpeople = stmt.executeQuery(sql2);
+			stmt = conn.createStatement();
 			String ename = "", sdate = "", edate = "";
 			if (levents2.next()) {
 				ename = levents2.getString(1);
